@@ -1,0 +1,56 @@
+{
+    "_comment" : "Create a AWS AMI ith AMZ Linux 2018 with Java and Tomcat",
+    "variables": {
+      "aws_access_key": "",
+      "aws_secret_key": ""
+    },
+    "builders": [{
+      "access_key": "give your access_key",
+      "secret_key": "give your secret_key ",
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "source_ami": "ami-0cd59ecaf368e5ccf",
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "DevOpsClass-B18-Build-{{isotime | clean_resource_name}}",
+      "vpc_id": "vpc-04829c702115deeae",
+      "subnet_id": "subnet-0c304e26ace684bf0",
+      "tags": {
+        "Name": "DevOpsClass-B18-Build-{{isotime | clean_resource_name}}"
+      }
+    }],
+    "provisioners": [{
+      "type": "shell",
+      "inline": [
+        "sleep 30",
+        "sudo apt update -y",
+        "sudo apt install nginx -y",
+        "sudo apt install git -y",
+        "sudo git clone https://github.com/mavrick202/webhooktesting.git",
+        "sudo rm -rf /var/www/html/index.nginx-debian.html",
+        "sudo cp webhooktesting/index.html /var/www/html/index.nginx-debian.html",
+        "sudo cp webhooktesting/style.css /var/www/html/style.css",
+        "sudo cp webhooktesting/scorekeeper.js /var/www/html/scorekeeper.js",
+        "sudo service nginx start",
+        "sudo systemctl enable nginx",
+        "curl https://get.docker.com | bash"
+        ]
+    },
+
+    {
+            "type": "file",
+            "source": "docker/docker.service",
+            "destination": "/tmp/docker.service"
+    },
+    {
+        "type": "shell",
+        "inline": [
+            "sudo cp /tmp/docker.service /lib/systemd/system/docker.service",
+            "sudo usermod -a -G docker ubuntu",
+            "sudo systemctl daemon-reload",
+            "sudo service docker restart"
+        ]
+
+    }
+]
+  }
