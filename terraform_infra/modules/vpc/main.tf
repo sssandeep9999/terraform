@@ -133,4 +133,4 @@ resource "aws_instance" "Terraform_Ec2_server" {
 #                  sudo docker run -d -p 8081:80 nginx &
 #               EOF
 
-# }
+}
