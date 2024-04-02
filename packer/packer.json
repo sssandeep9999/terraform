@@ -6,7 +6,7 @@
     },
     "builders": [{
       "access_key": "give your access_key",
-      "secret_key": "give your secret_key ",
+      "secret_key": "give your secret_key",
       "type": "amazon-ebs",
       "region": "us-east-1",
       "source_ami": "ami-0cd59ecaf368e5ccf",
