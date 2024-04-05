@@ -36,3 +36,7 @@ output "Ec2_name" {
     description = "To print Ec2 instance name"
     value = aws_instance.Terraform_Ec2_server.tags.Name
 }
+output "public_ip" {
+  description = "List of public IP addresses assigned to the instances, if applicable"
+  value       = "aws_instance.web-1.*.public_ip}"
+}
