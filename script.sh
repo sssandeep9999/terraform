@@ -16,7 +16,7 @@ echo "ami_id = \"$AMID\" " >> ./terraform_infra/terraform.tfvars
 cat ./terraform_infra/terraform.tfvars
 cd ./terraform_infra
 terraform init
-terraform apply --auto-approve
+terraform apply --auto-approve packer 2>&1 | tee weboutput.txt
 else
 echo "Validation FAILED. Check the CODE"
 exit
