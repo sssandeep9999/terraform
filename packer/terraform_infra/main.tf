@@ -6,6 +6,6 @@ psn1-cidr-block = var.psn1-cidr-block
 prn1-cidr-block = var.prn1-cidr-block
 az = var.az
 env = var.env
-#ami_id = file("${path.module}/ami.txt")
+#ami_id = file("${path.module}/ami.txt") # To refer ami from file
 ami_id = var.ami_id
 }
