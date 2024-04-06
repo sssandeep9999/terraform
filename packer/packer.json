@@ -12,11 +12,11 @@
       "source_ami": "ami-0cd59ecaf368e5ccf",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
-      "ami_name": "DevOpsClass-B18-Build-{{isotime | clean_resource_name}}",
+      "ami_name": "Webapp-testing-Build-{{isotime | clean_resource_name}}",
       "vpc_id": "vpc-04829c702115deeae",
       "subnet_id": "subnet-0c304e26ace684bf0",
       "tags": {
-        "Name": "DevOpsClass-B18-Build-{{isotime | clean_resource_name}}"
+        "Name": "Webapp-testing-Build-{{isotime | clean_resource_name}}"
       }
     }],
     "provisioners": [{
@@ -26,11 +26,11 @@
         "sudo apt update -y",
         "sudo apt install nginx -y",
         "sudo apt install git -y",
-        "sudo git clone https://github.com/mavrick202/webhooktesting.git",
+        "sudo git clone https://github.com/sssandeep9999/webappsourcecode.git",
         "sudo rm -rf /var/www/html/index.nginx-debian.html",
-        "sudo cp webhooktesting/index.html /var/www/html/index.nginx-debian.html",
-        "sudo cp webhooktesting/style.css /var/www/html/style.css",
-        "sudo cp webhooktesting/scorekeeper.js /var/www/html/scorekeeper.js",
+        "sudo cp webappsourcecode/index.html /var/www/html/index.nginx-debian.html",
+        "sudo cp webappsourcecode/style.css /var/www/html/style.css",
+        "sudo cp webappsourcecode/scorekeeper.js /var/www/html/scorekeeper.js",
         "sudo service nginx start",
         "sudo systemctl enable nginx",
         "curl https://get.docker.com | bash"
